@@ -31,13 +31,12 @@ sudo apt install -y                         \
 
 ### Clone the Repository
 
-Clone this repository into your ``workspace/src`` folder. If you don't have a workspace set up, you can learn more about creating one in the [ROS 2 workspace tutorial](https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html).
+Clone this repository into your ``workspace`` folder. If you don't have a workspace set up, you can learn more about creating one in the [ROS 2 workspace tutorial](https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html).
 
 
 ```bash
-cd <path_to_your_workspace>/src
+cd <path_to_your_workspace>
 git clone git@github.com:lucasmazz/gazebo_differential_drive_robot.git
-cd ..
 ```
 
 ### Build the Package
@@ -92,5 +91,49 @@ If you don't have a joystick, you can control the robot using the ```teleop_twis
 
 ```bash
 source /opt/ros/jazzy/setup.bash
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```
+
+## Running with Docker
+
+If you don't already have docker installed, you can install it
+using the [docker installation instructions](https://docs.docker.com/engine/install/) for your operating system.
+Be sure to follow the post-install instructions.
+
+### Create and run the container
+
+For Windows there is a handy `run.ps1` script for setting up the display service and running the container:
+```powershell
+cd docker
+.\run.ps1
+```
+
+Otherwise, run docker compose (you might have to set the display output to see the UI, I only tested on Windows):
+```bash
+cd docker
+docker compose up -d
+```
+
+### Launch Gazebo and see the robot
+
+Enter the container:
+```powershell
+docker exec -it gz_diff_drive_robot bash
+```
+
+Launch ROS2:
+```bash
+ros2 launch gazebo_differential_drive_robot robot.launch.py
+```
+
+### Control the robot
+
+Open another terminal and enter the container:
+```powershell
+docker exec -it gz_diff_drive_robot bash
+```
+
+Run the following command:
+```bash
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
