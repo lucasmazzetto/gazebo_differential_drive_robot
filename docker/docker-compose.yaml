@@ -1,0 +1,17 @@
+services:
+  gz_diff_drive_robot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gz_diff_drive_robot
+    network_mode: host
+    user: ubuntu
+    volumes:
+      - ..:/home/ubuntu/gazebo_differencial_drive_robot
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - ROS_DOMAIN_ID=42
+      - COLCON_DEFAULT_PARALLEL_JOBS=2
+    command: bash -c "source /entrypoint.sh && tail -f /dev/null"
