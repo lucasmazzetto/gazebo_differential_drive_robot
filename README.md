@@ -31,12 +31,13 @@ sudo apt install -y                         \
 
 ### Clone the Repository
 
-Clone this repository into your ``workspace`` folder. If you don't have a workspace set up, you can learn more about creating one in the [ROS 2 workspace tutorial](https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html).
+Clone this repository into your ``workspace/src`` folder. If you don't have a workspace set up, you can learn more about creating one in the [ROS 2 workspace tutorial](https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html).
 
 
 ```bash
-cd <path_to_your_workspace>
+cd <path_to_your_workspace>/src
 git clone git@github.com:lucasmazz/gazebo_differential_drive_robot.git
+cd ..
 ```
 
 ### Build the Package
