@@ -20,7 +20,7 @@ if [ -n "${WORKSPACE}" ]; then
     if [ ! -d "build" ] || [ ! -d "install" ]; then
         echo "No workspace build detected. Running rosdep + colcon build..."
         rosdep update
-        rosdep install --from-paths src --ignore-src -r -y --rosdistro ${ROS_DISTRO}
+        rosdep install --from-paths . --ignore-src -r -y --rosdistro ${ROS_DISTRO}
         colcon build --symlink-install
     else
         echo "Workspace already built. Skipping colcon build."
