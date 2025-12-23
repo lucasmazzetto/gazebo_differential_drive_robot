@@ -42,6 +42,9 @@ RUN chown -R ${USER}:${USER} /home/${USER}
 # Add user to groups for serial access
 RUN usermod -a -G dialout,plugdev ${USER}
 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 USER ${USER}
 
 # Source workspace automatically
@@ -49,6 +52,5 @@ RUN echo ". /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc && \
     echo ". ${WORKSPACE}/install/setup.bash" >> ~/.bashrc
 
 WORKDIR ${WORKSPACE}
-COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["bash"]
